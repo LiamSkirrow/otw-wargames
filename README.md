@@ -1,2 +1,2 @@
-# otw-wargames
-OTW Wargames
+# OTW Wargames
+Passwords for each level.
