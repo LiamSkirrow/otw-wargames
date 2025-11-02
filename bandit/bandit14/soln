@@ -1,0 +1,2 @@
+chmod 600 sshkey.private
+ssh bandit14@bandit.labs.overthewire.org -p 2220 -i sshkey.private
