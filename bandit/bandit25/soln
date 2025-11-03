@@ -1,0 +1,1 @@
+./script.sh | nc localhost 30002
