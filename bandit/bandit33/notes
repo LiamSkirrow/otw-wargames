@@ -1,0 +1,21 @@
+< = open
+> = create file
+
+can seem to create sh functions(), can't seem to run them though
+can also reference env vars by going ${VAR_NAME}, and the console prints them out (along with the usual permission denied message...)
+
+uppershell process:
+- read in input, capitalise all [a-z] text
+- execute the resulting processed text in sh
+- exec(capitalise(input))
+
+Notes:
+>> ~ 
+sh: 1: /home/bandit32: Permission denied
+
+>> ~/*
+WELCOME TO THE UPPERCASE SHELL
+>>
+
+SOLUTION:
+Depressingly, type "$0" into the terminal, which will resolve to the shell name (sh), which can then be used to cat /etc/bandit_pass/bandit33
