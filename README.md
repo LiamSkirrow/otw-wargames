@@ -1,2 +1,2 @@
 # OTW Wargames
-Passwords for each level.
+My attempt at solving OverTheWire wargames
