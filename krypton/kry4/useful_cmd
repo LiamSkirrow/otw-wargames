@@ -1,0 +1,1 @@
+tr -d ' ' < found_all | fold -w 1 > pw_file_processed
