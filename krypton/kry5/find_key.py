@@ -4,7 +4,8 @@
 
 import operator
 
-file = input('Enter filename: ')
+file = input('Enter source filename: ')
+pw_file = input('Enter pw filename: ')
 alphabet = 'ETAOINSRHDLUCMFYWGPBVKXQJZ'
 
 ### STEP 0: create raw output files accounting for offsets
@@ -42,7 +43,6 @@ sorted_list_offsets = []
 for freq_dict in freq_list:
     sorted_list = sorted(freq_dict.items(), key=operator.itemgetter(1), reverse=True)
     sorted_list_offsets.append(sorted_list)
-    print('items: ' + str(sorted_list))
 
 #print(sorted_list_offsets[0][0])
 
@@ -54,25 +54,40 @@ for l in sorted_list_offsets:
     for elem in l:
         if(elem[0] not in [' ', '\n']):
             alpha_dict[elem[0]] = alphabet[letter_offset]
-            #print(letter_offset)
             letter_offset += 1
     alpha_list.append(alpha_dict)
 
 # debug print
-print()
+print('Derived translation dictionaries:')
 for d in alpha_list:
-    print(d.keys())
+    print(d)
 
 
-freq_list_o0 = 'SIXMJEYWLPVRTHFQKAGNZCBODU'
-freq_list_o1 = 'KVYODRNCSBXEZIFUGJMPWLTQAH'
-freq_list_o2 = ''
-freq_list_o3 = ''
-freq_list_o4 = ''
-freq_list_o5 = ''
+### STEP 3: Apply derived dictionaries to PW file :)
+
+print()
+print('Passphrase:')
+with open(pw_file) as pw:
+    for line in pw:
+        print(line)
+        idx = 0
+        for c in line:
+            if(c not in [' ', '\n']):
+                print(alpha_list[idx][c], end="")
+                idx += 1
+                if(idx == 6):
+                    idx = 0
+        print()
+
+
+
+### STEP 4: ???
+
+### STEP 5: PROFIT!
+
 
 # X next up is to write these offsetted strings to their own file
-# - then need to do FA on each file individually, store these translation dicts{} in this file
+# X then need to do FA on each file individually, store these translation dicts{} in this file
 # - using each of the six translation dicts, perform the 6 way interleaved translation on the krypton5 PW file
 
 # - if the pw is still pretty jumbled, we can try and figure out the 'distance' from each jumbled char to the encrypted version
