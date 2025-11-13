@@ -21,7 +21,9 @@ with open(file, 'r') as f:
             for i in range(offset, len(line), 6):
                 #print(str(line[i])+' ', end="")
                 output_file.write(line[i])
+            output_file.close()
             print()
+    f.close()
 
 ### STEP 1: obtain character count of raw text files
 
@@ -29,11 +31,21 @@ freq_list = []
 
 for offset in range(0, 6):
     with open('raw_offset'+str(offset)) as f:
+        print('Opening file for offset #' + str(offset))
         for line in f:
             freq_dict = {}
+            print(line)
             for char in line:
                 freq_dict[char] = line.count(char)         
-    freq_list.append(freq_dict)
+        freq_list.append(freq_dict)
+        f.close()
+        # print(freq_dict)
+
+print('Freq list dicts:')
+for fl in freq_list:
+    print(fl)
+
+print()    
 
 ### STEP 2: build alphabets for each offset file
 
@@ -45,6 +57,12 @@ for freq_dict in freq_list:
     sorted_list_offsets.append(sorted_list)
 
 #print(sorted_list_offsets[0][0])
+
+print('Sorted list offset:')
+for l in sorted_list_offsets:
+    print(l)
+
+print()
 
 alpha_list = []
 
@@ -78,6 +96,7 @@ with open(pw_file) as pw:
                 if(idx == 6):
                     idx = 0
         print()
+    pw.close()
 
 
 
